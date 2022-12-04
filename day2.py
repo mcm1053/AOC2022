@@ -1,46 +1,40 @@
-# A/X = rock
-# B/Y = paper
-# C/Z = scissors
+file = [l.strip() for l in open('day2.txt')]
 
-data = []
-total = 0
-f = open('day2.txt', 'r')
+# Part 1 - Lookup values and add total points
+def part1(data):
+    total = 0
+    points = {
+        "A X": 4,
+        "A Y": 8,
+        "A Z": 3,
+        "B X": 1,
+        "B Y": 5,
+        "B Z": 9,
+        "C X": 7,
+        "C Y": 2,
+        "C Z": 6,
+    }
+    for i in data:
+        total += points.get(i)
+    return total
 
-# Append file to a list
-for line in f:
-    data.append(line.strip())
+# Part 2 - X - Lose, Y - Draw, Z - Win
+def part2(data):
+    total = 0
+    points = {
+        "A X": 3,
+        "A Y": 4,
+        "A Z": 8,
+        "B X": 1,
+        "B Y": 5,
+        "B Z": 9,
+        "C X": 2,
+        "C Y": 6,
+        "C Z": 7,
+    }
+    for i in data:
+        total += points.get(i)
+    return total
 
-# RPS battle
-for i in data:
-    # Rock
-    if (i[0] == 'A'):
-        if (i[2] == 'X'):
-            total += 1
-            total += 3
-        if (i[2] == 'Y'):
-            total += 2
-            total += 6
-        if (i[2] == 'Z'):
-            total += 3
-    # Paper
-    if (i[0] == 'B'):
-        if (i[2] == 'X'):
-            total += 1
-        if (i[2] == 'Y'):
-            total += 2
-            total += 3
-        if (i[2] == 'Z'):
-            total += 3
-            total += 6
-    # Scissors
-    if (i[0] == 'C'):
-        if (i[2] == 'X'):
-            total += 1
-            total += 6
-        if (i[2] == 'Y'):
-            total += 2
-        if (i[2] == 'Z'):
-            total += 3
-            total += 3
-
-print(total)
+print("Part 1: ", part1(file))
+print("Part 2: ", part2(file))
